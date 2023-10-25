@@ -8,3 +8,7 @@
 ### Codelab Questions
 
 1. TODO: fill in the questions provided in the assignment description here.
+
+### Codelab Answers
+
+1. TODO: fill in 1-3 sentence answers for each question in the section above.
