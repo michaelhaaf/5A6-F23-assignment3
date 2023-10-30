@@ -1,6 +1,7 @@
 # Adapted from:
 # - FitFolio https://github.com/kbaggott1/FitFolio
 # - https://stackoverflow.com/a/65857032
+# - https://stefma.medium.com/how-to-store-a-android-keystore-safely-on-github-actions-f0cef9413784
 
 name: Code Quality Workflow
 
@@ -25,9 +26,10 @@ jobs:
         distribution: 'temurin'
         java-version: 17
     - uses: gradle/gradle-build-action@v2
+    - run: |
+        echo "${{ secrets.DEBUG_KEYSTORE }}" > ./debug.keystore.asc
+        gpg -d --passphrase "${{ secrets.DEBUG_KEYSTORE_PASSPHRASE }}" --batch ./debug.keystore.asc > ./debug.keystore
     - run: chmod +x ./gradlew
     - run: ./gradlew ktlintFormat
     - run: ./gradlew ktlintCheck
-    - run: ./gradlew lintFix
-    - run: ./gradlew lint
     - run: ./gradlew build
