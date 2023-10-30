@@ -52,12 +52,12 @@ import java.util.Locale
 fun RallyTabRow(
     allScreens: List<RallyDestination>,
     onTabSelected: (RallyDestination) -> Unit,
-    currentScreen: RallyDestination
+    currentScreen: RallyDestination,
 ) {
     Surface(
         Modifier
             .height(TabHeight)
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Row(Modifier.selectableGroup()) {
             allScreens.forEach { screen ->
@@ -65,7 +65,7 @@ fun RallyTabRow(
                     text = screen.route,
                     icon = screen.icon,
                     onSelected = { onTabSelected(screen) },
-                    selected = currentScreen == screen
+                    selected = currentScreen == screen,
                 )
             }
         }
@@ -77,7 +77,7 @@ private fun RallyTab(
     text: String,
     icon: ImageVector,
     onSelected: () -> Unit,
-    selected: Boolean
+    selected: Boolean,
 ) {
     val color = MaterialTheme.colors.onSurface
     val durationMillis = if (selected) TabFadeInAnimationDuration else TabFadeOutAnimationDuration
@@ -85,12 +85,12 @@ private fun RallyTab(
         tween<Color>(
             durationMillis = durationMillis,
             easing = LinearEasing,
-            delayMillis = TabFadeInAnimationDelay
+            delayMillis = TabFadeInAnimationDelay,
         )
     }
     val tabTintColor by animateColorAsState(
         targetValue = if (selected) color else color.copy(alpha = InactiveTabOpacity),
-        animationSpec = animSpec
+        animationSpec = animSpec,
     )
     Row(
         modifier = Modifier
@@ -105,10 +105,10 @@ private fun RallyTab(
                 indication = rememberRipple(
                     bounded = false,
                     radius = Dp.Unspecified,
-                    color = Color.Unspecified
-                )
+                    color = Color.Unspecified,
+                ),
             )
-            .clearAndSetSemantics { contentDescription = text }
+            .clearAndSetSemantics { contentDescription = text },
     ) {
         Icon(imageVector = icon, contentDescription = text, tint = tabTintColor)
         if (selected) {

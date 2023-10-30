@@ -33,7 +33,7 @@ const val MAX_PEOPLE = 4
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val destinationsRepository: DestinationsRepository,
-    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     val hotels: List<ExploreModel> = destinationsRepository.hotels
@@ -42,8 +42,8 @@ class MainViewModel @Inject constructor(
     fun updatePeople(people: Int) {
         viewModelScope.launch {
             if (people > MAX_PEOPLE) {
-            // TODO Codelab: Uncomment
-            //  _suggestedDestinations.value = emptyList()
+                // TODO Codelab: Uncomment
+                //  _suggestedDestinations.value = emptyList()
             } else {
                 val newDestinations = withContext(defaultDispatcher) {
                     destinationsRepository.destinations

@@ -54,7 +54,7 @@ fun AccountRow(
     name: String,
     number: Int,
     amount: Float,
-    color: Color
+    color: Color,
 ) {
     BaseRow(
         modifier = modifier,
@@ -62,7 +62,7 @@ fun AccountRow(
         title = name,
         subtitle = stringResource(R.string.account_redacted) + AccountDecimalFormat.format(number),
         amount = amount,
-        negative = false
+        negative = false,
     )
 }
 
@@ -76,7 +76,7 @@ fun BillRow(name: String, due: String, amount: Float, color: Color) {
         title = name,
         subtitle = "Due $due",
         amount = amount,
-        negative = true
+        negative = true,
     )
 }
 
@@ -87,7 +87,7 @@ private fun BaseRow(
     title: String,
     subtitle: String,
     amount: Float,
-    negative: Boolean
+    negative: Boolean,
 ) {
     val dollarSign = if (negative) "–$ " else "$ "
     val formattedAmount = formatAmount(amount)
@@ -98,12 +98,12 @@ private fun BaseRow(
                 contentDescription =
                     "$title account ending in ${subtitle.takeLast(4)}, current balance $dollarSign$formattedAmount"
             },
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         val typography = MaterialTheme.typography
         AccountIndicator(
             color = color,
-            modifier = Modifier
+            modifier = Modifier,
         )
         Spacer(Modifier.width(12.dp))
         Column(Modifier) {
@@ -114,17 +114,17 @@ private fun BaseRow(
         }
         Spacer(Modifier.weight(1f))
         Row(
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 text = dollarSign,
                 style = typography.h6,
-                modifier = Modifier.align(Alignment.CenterVertically)
+                modifier = Modifier.align(Alignment.CenterVertically),
             )
             Text(
                 text = formattedAmount,
                 style = typography.h6,
-                modifier = Modifier.align(Alignment.CenterVertically)
+                modifier = Modifier.align(Alignment.CenterVertically),
             )
         }
         Spacer(Modifier.width(16.dp))
@@ -135,7 +135,7 @@ private fun BaseRow(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(end = 12.dp)
-                    .size(24.dp)
+                    .size(24.dp),
             )
         }
     }
@@ -150,7 +150,7 @@ private fun AccountIndicator(color: Color, modifier: Modifier = Modifier) {
     Spacer(
         modifier
             .size(4.dp, 36.dp)
-            .background(color = color)
+            .background(color = color),
     )
 }
 

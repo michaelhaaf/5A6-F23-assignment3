@@ -33,7 +33,7 @@ fun CraneEditableUserInput(
     hint: String,
     caption: String? = null,
     @DrawableRes vectorImageId: Int? = null,
-    onInputChanged: (String) -> Unit
+    onInputChanged: (String) -> Unit,
 ) {
     // TODO Codelab: Encapsulate this state in a state holder
     var textState by remember { mutableStateOf(hint) }
@@ -43,7 +43,7 @@ fun CraneEditableUserInput(
         caption = caption,
         tintIcon = { !isHint() },
         showCaption = { !isHint() },
-        vectorImageId = vectorImageId
+        vectorImageId = vectorImageId,
     ) {
         BasicTextField(
             value = textState,
@@ -56,7 +56,7 @@ fun CraneEditableUserInput(
             } else {
                 MaterialTheme.typography.body1.copy(color = LocalContentColor.current)
             },
-            cursorBrush = SolidColor(LocalContentColor.current)
+            cursorBrush = SolidColor(LocalContentColor.current),
         )
     }
 }

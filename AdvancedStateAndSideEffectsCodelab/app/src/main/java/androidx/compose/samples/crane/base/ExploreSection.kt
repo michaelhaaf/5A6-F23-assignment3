@@ -57,19 +57,18 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest.Builder
 
-
 @Composable
 fun ExploreSection(
     modifier: Modifier = Modifier,
     title: String,
     exploreList: List<ExploreModel>,
-    onItemClicked: OnExploreItemClicked
+    onItemClicked: OnExploreItemClicked,
 ) {
     Surface(modifier = modifier.fillMaxSize(), color = Color.White, shape = BottomSheetShape) {
         Column(modifier = Modifier.padding(start = 24.dp, top = 20.dp, end = 24.dp)) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.caption.copy(color = crane_caption)
+                style = MaterialTheme.typography.caption.copy(color = crane_caption),
             )
             Spacer(Modifier.height(8.dp))
             // TODO Codelab: derivedStateOf step
@@ -85,19 +84,19 @@ private fun ExploreList(
     exploreList: List<ExploreModel>,
     onItemClicked: OnExploreItemClicked,
     modifier: Modifier = Modifier,
-    listState: LazyListState = rememberLazyListState()
+    listState: LazyListState = rememberLazyListState(),
 ) {
     LazyColumn(
         modifier = modifier,
         contentPadding = WindowInsets.navigationBars.asPaddingValues(),
-        state = listState
+        state = listState,
     ) {
         items(exploreList) { exploreItem ->
             Column(Modifier.fillParentMaxWidth()) {
                 ExploreItem(
                     modifier = Modifier.fillParentMaxWidth(),
                     item = exploreItem,
-                    onItemClicked = onItemClicked
+                    onItemClicked = onItemClicked,
                 )
                 Divider(color = crane_divider_color)
             }
@@ -109,12 +108,12 @@ private fun ExploreList(
 private fun ExploreItem(
     modifier: Modifier = Modifier,
     item: ExploreModel,
-    onItemClicked: OnExploreItemClicked
+    onItemClicked: OnExploreItemClicked,
 ) {
     Row(
         modifier = modifier
             .clickable { onItemClicked(item) }
-            .padding(top = 12.dp, bottom = 12.dp)
+            .padding(top = 12.dp, bottom = 12.dp),
     ) {
         ExploreImageContainer {
             Box {
@@ -122,7 +121,7 @@ private fun ExploreItem(
                     model = Builder(LocalContext.current)
                         .data(item.imageUrl)
                         .crossfade(true)
-                        .build()
+                        .build(),
                 )
                 Image(
                     painter = painter,
@@ -146,12 +145,12 @@ private fun ExploreItem(
         Column {
             Text(
                 text = item.city.nameToDisplay,
-                style = MaterialTheme.typography.h6
+                style = MaterialTheme.typography.h6,
             )
             Spacer(Modifier.height(8.dp))
             Text(
                 text = item.description,
-                style = MaterialTheme.typography.caption.copy(color = crane_caption)
+                style = MaterialTheme.typography.caption.copy(color = crane_caption),
             )
         }
     }

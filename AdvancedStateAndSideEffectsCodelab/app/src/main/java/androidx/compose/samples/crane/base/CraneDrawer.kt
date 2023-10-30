@@ -40,11 +40,11 @@ fun CraneDrawer(modifier: Modifier = Modifier) {
     Column(
         modifier
             .fillMaxSize()
-            .padding(start = 24.dp, top = 48.dp)
+            .padding(start = 24.dp, top = 48.dp),
     ) {
         Image(
             painter = painterResource(R.drawable.ic_crane_drawer),
-            contentDescription = stringResource(R.string.cd_drawer)
+            contentDescription = stringResource(R.string.cd_drawer),
         )
         for (screen in screens) {
             Spacer(Modifier.height(24.dp))

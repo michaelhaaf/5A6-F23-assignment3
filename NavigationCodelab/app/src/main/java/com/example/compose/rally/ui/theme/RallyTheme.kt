@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.sp
  */
 @Composable
 fun RallyTheme(content: @Composable () -> Unit) {
-
     MaterialTheme(colors = ColorPalette, typography = Typography, content = content)
 }
 
@@ -44,7 +43,7 @@ fun RallyDialogThemeOverlay(content: @Composable () -> Unit) {
     val dialogColors = darkColors(
         primary = Color.White,
         surface = Color.White.copy(alpha = 0.12f).compositeOver(Color.Black),
-        onSurface = Color.White
+        onSurface = Color.White,
     )
 
     // Copy the current [Typography] and replace some text styles for this theme.
@@ -54,12 +53,12 @@ fun RallyDialogThemeOverlay(content: @Composable () -> Unit) {
             fontWeight = FontWeight.Normal,
             fontSize = 20.sp,
             lineHeight = 28.sp,
-            letterSpacing = 1.sp
+            letterSpacing = 1.sp,
         ),
         button = currentTypography.button.copy(
             fontWeight = FontWeight.Bold,
-            letterSpacing = 0.2.em
-        )
+            letterSpacing = 0.2.em,
+        ),
     )
     MaterialTheme(colors = dialogColors, typography = dialogTypography, content = content)
 }

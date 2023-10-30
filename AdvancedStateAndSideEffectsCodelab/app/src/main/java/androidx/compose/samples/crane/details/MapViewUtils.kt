@@ -41,7 +41,7 @@ fun rememberMapViewWithLifecycle(): MapView {
 }
 
 fun GoogleMap.setZoom(
-    @FloatRange(from = MinZoom.toDouble(), to = MaxZoom.toDouble()) zoom: Float
+    @FloatRange(from = MinZoom.toDouble(), to = MaxZoom.toDouble()) zoom: Float,
 ) {
     resetMinMaxZoomPreference()
     setMinZoomPreference(zoom)

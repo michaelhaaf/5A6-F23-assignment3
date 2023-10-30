@@ -1,41 +1,36 @@
-# Adapted from FitFolio https://github.com/kbaggott1/FitFolio
+# Adapted from:
+# - FitFolio https://github.com/kbaggott1/FitFolio
+# - https://stackoverflow.com/a/65857032
+# - https://stefma.medium.com/how-to-store-a-android-keystore-safely-on-github-actions-f0cef9413784
 
 name: Code Quality Workflow
 
 on:
   pull_request:
     branches:
-      - main
       
 jobs:
   my_job:
     name: Build and Lint
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix: { dir: ["NavigationCodelab", "AdvancedStateAndSideEffectsCodelab"] }
+    defaults:
+      run: 
+        working-directory: ${{ matrix.dir }}
 
     steps:
-    - name: Clone Repo
-      uses: actions/checkout@v1
-
-    - name: Set up JDK 17
-      uses: actions/setup-java@v1
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v3
       with:
+        distribution: 'temurin'
         java-version: 17
-
-    - name: Grant Execute Permission to gradlew
-      run: chmod +x ./gradlew
-      
-    - name: Run the ktlintFormat command to format our files
-      run: ./gradlew ktlintFormat
-
-    - name: Run Kotlin Linter
-      run: ./gradlew ktlintCheck
-      
-    - name: Run lintFix to attempt to fix linting errors
-      run: ./gradlew lintFix
-
-    - name: Run Android Linter
-      run: ./gradlew lint
-
-    - name: Build the application
-      run: ./gradlew build
+    - uses: gradle/gradle-build-action@v2
+    - name: Decrypt debug keystore
+      run: |
+        echo "${{ secrets.DEBUG_KEYSTORE }}" > ./debug.keystore.asc
+        gpg -d --passphrase "${{ secrets.DEBUG_KEYSTORE_PASSPHRASE }}" --batch ./debug.keystore.asc > ./debug.keystore
+    - run: chmod +x ./gradlew
+    - run: ./gradlew ktlintFormat
+    - run: ./gradlew ktlintCheck
+    - run: ./gradlew build

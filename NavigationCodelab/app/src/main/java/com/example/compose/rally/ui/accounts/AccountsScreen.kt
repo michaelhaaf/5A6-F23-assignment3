@@ -51,9 +51,9 @@ fun AccountsScreen(
                 name = account.name,
                 number = account.number,
                 amount = account.balance,
-                color = account.color
+                color = account.color,
             )
-        }
+        },
     )
 }
 
@@ -62,7 +62,7 @@ fun AccountsScreen(
  */
 @Composable
 fun SingleAccountScreen(
-    accountType: String? = UserData.accounts.first().name
+    accountType: String? = UserData.accounts.first().name,
 ) {
     val account = remember(accountType) { UserData.getAccount(accountType) }
     StatementBody(
@@ -76,7 +76,7 @@ fun SingleAccountScreen(
             name = row.name,
             number = row.number,
             amount = row.balance,
-            color = row.color
+            color = row.color,
         )
     }
 }

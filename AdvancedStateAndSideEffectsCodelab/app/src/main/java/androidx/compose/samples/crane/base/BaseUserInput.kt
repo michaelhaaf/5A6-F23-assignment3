@@ -45,12 +45,12 @@ import androidx.compose.ui.unit.dp
 fun SimpleUserInput(
     text: String? = null,
     caption: String? = null,
-    @DrawableRes vectorImageId: Int? = null
+    @DrawableRes vectorImageId: Int? = null,
 ) {
     CraneUserInput(
         caption = if (text == null) caption else null,
         text = text ?: "",
-        vectorImageId = vectorImageId
+        vectorImageId = vectorImageId,
     )
 }
 
@@ -61,7 +61,7 @@ fun CraneUserInput(
     onClick: () -> Unit = { },
     caption: String? = null,
     @DrawableRes vectorImageId: Int? = null,
-    tint: Color = LocalContentColor.current
+    tint: Color = LocalContentColor.current,
 ) {
     CraneBaseUserInput(
         modifier = modifier,
@@ -69,7 +69,7 @@ fun CraneUserInput(
         caption = caption,
         vectorImageId = vectorImageId,
         tintIcon = { text.isNotEmpty() },
-        tint = tint
+        tint = tint,
     ) {
         Text(text = text, style = MaterialTheme.typography.body1.copy(color = tint))
     }
@@ -85,12 +85,12 @@ fun CraneBaseUserInput(
     showCaption: () -> Boolean = { true },
     tintIcon: () -> Boolean,
     tint: Color = LocalContentColor.current,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier,
         onClick = onClick,
-        color = MaterialTheme.colors.primaryVariant
+        color = MaterialTheme.colors.primaryVariant,
     ) {
         Row(Modifier.padding(all = 12.dp)) {
             if (vectorImageId != null) {
@@ -98,7 +98,7 @@ fun CraneBaseUserInput(
                     modifier = Modifier.size(24.dp, 24.dp),
                     painter = painterResource(id = vectorImageId),
                     tint = if (tintIcon()) tint else Color(0x80FFFFFF),
-                    contentDescription = null
+                    contentDescription = null,
                 )
                 Spacer(Modifier.width(8.dp))
             }
@@ -106,14 +106,14 @@ fun CraneBaseUserInput(
                 Text(
                     modifier = Modifier.align(Alignment.CenterVertically),
                     text = caption,
-                    style = (captionTextStyle).copy(color = tint)
+                    style = (captionTextStyle).copy(color = tint),
                 )
                 Spacer(Modifier.width(8.dp))
             }
             Row(
                 Modifier
                     .weight(1f)
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
             ) {
                 content()
             }
@@ -130,7 +130,7 @@ fun PreviewInput() {
                 tintIcon = { true },
                 vectorImageId = R.drawable.ic_plane,
                 caption = "Caption",
-                showCaption = { true }
+                showCaption = { true },
             ) {
                 Text(text = "text", style = MaterialTheme.typography.body1)
             }

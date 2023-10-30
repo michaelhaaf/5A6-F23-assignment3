@@ -29,12 +29,12 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun FlySearchContent(
     onPeopleChanged: (Int) -> Unit,
-    onToDestinationChanged: (String) -> Unit
+    onToDestinationChanged: (String) -> Unit,
 ) {
     CraneSearch {
         PeopleUserInput(
             titleSuffix = ", Economy",
-            onPeopleChanged = onPeopleChanged
+            onPeopleChanged = onPeopleChanged,
         )
         Spacer(Modifier.height(8.dp))
         FromDestination()

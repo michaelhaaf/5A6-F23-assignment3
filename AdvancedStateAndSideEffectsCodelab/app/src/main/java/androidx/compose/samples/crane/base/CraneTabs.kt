@@ -45,7 +45,7 @@ import androidx.core.os.ConfigurationCompat
 fun CraneTabBar(
     modifier: Modifier = Modifier,
     onMenuClicked: () -> Unit,
-    children: @Composable (Modifier) -> Unit
+    children: @Composable (Modifier) -> Unit,
 ) {
     Row(modifier) {
         // Separate Row as the children shouldn't have the padding
@@ -55,18 +55,18 @@ fun CraneTabBar(
                     .padding(top = 8.dp)
                     .clickable(onClick = onMenuClicked),
                 painter = painterResource(id = R.drawable.ic_menu),
-                contentDescription = stringResource(id = R.string.cd_menu)
+                contentDescription = stringResource(id = R.string.cd_menu),
             )
             Spacer(Modifier.width(8.dp))
             Image(
                 painter = painterResource(id = R.drawable.ic_crane_logo),
-                contentDescription = null
+                contentDescription = null,
             )
         }
         children(
             Modifier
                 .weight(1f)
-                .align(Alignment.CenterVertically)
+                .align(Alignment.CenterVertically),
         )
     }
 }
@@ -76,14 +76,14 @@ fun CraneTabs(
     modifier: Modifier = Modifier,
     titles: List<String>,
     tabSelected: CraneScreen,
-    onTabSelected: (CraneScreen) -> Unit
+    onTabSelected: (CraneScreen) -> Unit,
 ) {
     TabRow(
         selectedTabIndex = tabSelected.ordinal,
         modifier = modifier,
         contentColor = MaterialTheme.colors.onSurface,
         indicator = { },
-        divider = { }
+        divider = { },
     ) {
         titles.forEachIndexed { index, title ->
             val selected = index == tabSelected.ordinal
@@ -98,13 +98,13 @@ fun CraneTabs(
 
             Tab(
                 selected = selected,
-                onClick = { onTabSelected(CraneScreen.values()[index]) }
+                onClick = { onTabSelected(CraneScreen.values()[index]) },
             ) {
                 Text(
                     modifier = textModifier,
                     text = title.uppercase(
-                        ConfigurationCompat.getLocales(LocalConfiguration.current)[0]!!
-                    )
+                        ConfigurationCompat.getLocales(LocalConfiguration.current)[0]!!,
+                    ),
                 )
             }
         }
