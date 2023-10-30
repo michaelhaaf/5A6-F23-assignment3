@@ -1,4 +1,6 @@
-# Adapted from FitFolio https://github.com/kbaggott1/FitFolio
+# Adapted from:
+# - FitFolio https://github.com/kbaggott1/FitFolio
+# - https://stackoverflow.com/a/65857032
 
 name: Code Quality Workflow
 
@@ -9,8 +11,12 @@ on:
 jobs:
   my_job:
     name: Build and Lint
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix: { dir: ["NavigationCodelab", "AdvancedStateAndSideEffectsCodelab"] }
+    defaults:
+      run: 
+        working-directory: ${{ matrix.dir }}
 
     steps:
     - uses: actions/checkout@v4
