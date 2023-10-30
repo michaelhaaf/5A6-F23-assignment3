@@ -28,5 +28,5 @@ val ColorPalette = darkColors(
     surface = DarkBlue900,
     onSurface = Color.White,
     background = DarkBlue900,
-    onBackground = Color.White
+    onBackground = Color.White,
 )

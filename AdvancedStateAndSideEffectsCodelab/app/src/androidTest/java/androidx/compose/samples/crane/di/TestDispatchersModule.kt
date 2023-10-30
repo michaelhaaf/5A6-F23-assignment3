@@ -30,7 +30,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],
-    replaces = [DispatchersModule::class]
+    replaces = [DispatchersModule::class],
 )
 class TestDispatchersModule {
 

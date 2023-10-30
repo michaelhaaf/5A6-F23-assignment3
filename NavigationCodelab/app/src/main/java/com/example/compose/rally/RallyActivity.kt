@@ -53,9 +53,9 @@ fun RallyApp() {
                 RallyTabRow(
                     allScreens = rallyTabRowScreens,
                     onTabSelected = { screen -> currentScreen = screen },
-                    currentScreen = currentScreen
+                    currentScreen = currentScreen,
                 )
-            }
+            },
         ) { innerPadding ->
             Box(Modifier.padding(innerPadding)) {
                 currentScreen.screen()

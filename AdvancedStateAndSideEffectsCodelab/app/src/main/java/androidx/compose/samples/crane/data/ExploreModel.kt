@@ -23,7 +23,7 @@ data class City(
     val name: String,
     val country: String,
     val latitude: String,
-    val longitude: String
+    val longitude: String,
 ) {
     val nameToDisplay = "$name, $country"
 }
@@ -32,5 +32,5 @@ data class City(
 data class ExploreModel(
     val city: City,
     val description: String,
-    val imageUrl: String
+    val imageUrl: String,
 )

@@ -19,7 +19,7 @@ package androidx.compose.samples.crane.data
 import javax.inject.Inject
 
 class DestinationsRepository @Inject constructor(
-    private val destinationsLocalDataSource: DestinationsLocalDataSource
+    private val destinationsLocalDataSource: DestinationsLocalDataSource,
 ) {
     val destinations: List<ExploreModel> = destinationsLocalDataSource.craneDestinations
     val hotels: List<ExploreModel> = destinationsLocalDataSource.craneHotels

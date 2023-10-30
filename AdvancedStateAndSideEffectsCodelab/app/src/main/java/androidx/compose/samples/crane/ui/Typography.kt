@@ -34,73 +34,73 @@ private val craneFontFamily = FontFamily(fonts = listOf(light, regular, medium, 
 val captionTextStyle = TextStyle(
     fontFamily = craneFontFamily,
     fontWeight = FontWeight.W400,
-    fontSize = 16.sp
+    fontSize = 16.sp,
 )
 
 val craneTypography = Typography(
     h1 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W300,
-        fontSize = 96.sp
+        fontSize = 96.sp,
     ),
     h2 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W400,
-        fontSize = 60.sp
+        fontSize = 60.sp,
     ),
     h3 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W600,
-        fontSize = 48.sp
+        fontSize = 48.sp,
     ),
     h4 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W600,
-        fontSize = 34.sp
+        fontSize = 34.sp,
     ),
     h5 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W600,
-        fontSize = 24.sp
+        fontSize = 24.sp,
     ),
     h6 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W400,
-        fontSize = 20.sp
+        fontSize = 20.sp,
     ),
     subtitle1 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W500,
-        fontSize = 16.sp
+        fontSize = 16.sp,
     ),
     subtitle2 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W600,
-        fontSize = 14.sp
+        fontSize = 14.sp,
     ),
     body1 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W600,
-        fontSize = 16.sp
+        fontSize = 16.sp,
     ),
     body2 = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W400,
-        fontSize = 14.sp
+        fontSize = 14.sp,
     ),
     button = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W600,
-        fontSize = 14.sp
+        fontSize = 14.sp,
     ),
     caption = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W500,
-        fontSize = 12.sp
+        fontSize = 12.sp,
     ),
     overline = TextStyle(
         fontFamily = craneFontFamily,
         fontWeight = FontWeight.W400,
-        fontSize = 12.sp
-    )
+        fontSize = 12.sp,
+    ),
 )

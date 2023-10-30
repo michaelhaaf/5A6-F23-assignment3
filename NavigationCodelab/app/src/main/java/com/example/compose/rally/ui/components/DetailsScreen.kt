@@ -44,7 +44,7 @@ fun <T> StatementBody(
     amounts: (T) -> Float,
     amountsTotal: Float,
     circleLabel: String,
-    rows: @Composable (T) -> Unit
+    rows: @Composable (T) -> Unit,
 ) {
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         Box(Modifier.padding(16.dp)) {
@@ -56,18 +56,18 @@ fun <T> StatementBody(
                 Modifier
                     .height(300.dp)
                     .align(Alignment.Center)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
             )
             Column(modifier = Modifier.align(Alignment.Center)) {
                 Text(
                     text = circleLabel,
                     style = MaterialTheme.typography.body1,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
                 )
                 Text(
                     text = formatAmount(amountsTotal),
                     style = MaterialTheme.typography.h2,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
                 )
             }
         }

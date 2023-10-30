@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                 MainScreen(onExploreItemClicked = {
                     launchDetailsActivity(
                         context = this,
-                        item = it
+                        item = it,
                     )
                 })
             }

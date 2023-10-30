@@ -68,17 +68,17 @@ fun OverviewScreen(
         modifier = Modifier
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
-            .semantics { contentDescription = "Overview Screen" }
+            .semantics { contentDescription = "Overview Screen" },
     ) {
         AlertCard()
         Spacer(Modifier.height(RallyDefaultPadding))
         AccountsCard(
             onClickSeeAll = onClickSeeAllAccounts,
-            onAccountClick = onAccountClick
+            onAccountClick = onAccountClick,
         )
         Spacer(Modifier.height(RallyDefaultPadding))
         BillsCard(
-            onClickSeeAll = onClickSeeAllBills
+            onClickSeeAll = onClickSeeAllBills,
         )
     }
 }
@@ -97,7 +97,7 @@ private fun AlertCard() {
                 showDialog = false
             },
             bodyText = alertMessage,
-            buttonText = "Dismiss".uppercase(Locale.getDefault())
+            buttonText = "Dismiss".uppercase(Locale.getDefault()),
         )
     }
     Card {
@@ -106,7 +106,7 @@ private fun AlertCard() {
                 showDialog = true
             }
             RallyDivider(
-                modifier = Modifier.padding(start = RallyDefaultPadding, end = RallyDefaultPadding)
+                modifier = Modifier.padding(start = RallyDefaultPadding, end = RallyDefaultPadding),
             )
             AlertItem(alertMessage)
         }
@@ -119,17 +119,17 @@ private fun AlertHeader(onClickSeeAll: () -> Unit) {
         modifier = Modifier
             .padding(RallyDefaultPadding)
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = "Alerts",
             style = MaterialTheme.typography.subtitle2,
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier.align(Alignment.CenterVertically),
         )
         TextButton(
             onClick = onClickSeeAll,
             contentPadding = PaddingValues(0.dp),
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier.align(Alignment.CenterVertically),
         ) {
             Text(
                 text = "SEE ALL",
@@ -149,18 +149,18 @@ private fun AlertItem(message: String) {
             // properties of the descendants will be merged. If we'd use clearAndSetSemantics instead,
             // we'd have to define the semantics properties explicitly.
             .semantics(mergeDescendants = true) {},
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             style = MaterialTheme.typography.body2,
             modifier = Modifier.weight(1f),
-            text = message
+            text = message,
         )
         IconButton(
             onClick = {},
             modifier = Modifier
                 .align(Alignment.Top)
-                .clearAndSetSemantics {}
+                .clearAndSetSemantics {},
         ) {
             Icon(Icons.Filled.Sort, contentDescription = null)
         }
@@ -178,14 +178,14 @@ private fun <T> OverviewScreenCard(
     values: (T) -> Float,
     colors: (T) -> Color,
     data: List<T>,
-    row: @Composable (T) -> Unit
+    row: @Composable (T) -> Unit,
 ) {
     Card {
         Column {
             Column(Modifier.padding(RallyDefaultPadding)) {
                 Text(text = title, style = MaterialTheme.typography.subtitle2)
                 val amountText = "$" + formatAmount(
-                    amount
+                    amount,
                 )
                 Text(text = amountText, style = MaterialTheme.typography.h2)
             }
@@ -207,7 +207,7 @@ private fun <T> OverviewScreenCard(
 private fun <T> OverViewDivider(
     data: List<T>,
     values: (T) -> Float,
-    colors: (T) -> Color
+    colors: (T) -> Color,
 ) {
     Row(Modifier.fillMaxWidth()) {
         data.forEach { item: T ->
@@ -215,7 +215,7 @@ private fun <T> OverViewDivider(
                 modifier = Modifier
                     .weight(values(item))
                     .height(1.dp)
-                    .background(colors(item))
+                    .background(colors(item)),
             )
         }
     }
@@ -233,14 +233,14 @@ private fun AccountsCard(onClickSeeAll: () -> Unit, onAccountClick: (String) -> 
         onClickSeeAll = onClickSeeAll,
         data = UserData.accounts,
         colors = { it.color },
-        values = { it.balance }
+        values = { it.balance },
     ) { account ->
         AccountRow(
             modifier = Modifier.clickable { onAccountClick(account.name) },
             name = account.name,
             number = account.number,
             amount = account.balance,
-            color = account.color
+            color = account.color,
         )
     }
 }
@@ -257,13 +257,13 @@ private fun BillsCard(onClickSeeAll: () -> Unit) {
         onClickSeeAll = onClickSeeAll,
         data = UserData.bills,
         colors = { it.color },
-        values = { it.amount }
+        values = { it.amount },
     ) { bill ->
         BillRow(
             name = bill.name,
             due = bill.due,
             amount = bill.amount,
-            color = bill.color
+            color = bill.color,
         )
     }
 }
@@ -274,7 +274,7 @@ private fun SeeAllButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
         onClick = onClick,
         modifier = modifier
             .height(44.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Text(stringResource(R.string.see_all))
     }

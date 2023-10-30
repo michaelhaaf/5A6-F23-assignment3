@@ -88,7 +88,7 @@ class DetailsActivity : ComponentActivity() {
                 Surface {
                     DetailsScreen(
                         onErrorLoading = { finish() },
-                        modifier = Modifier.systemBarsPadding()
+                        modifier = Modifier.systemBarsPadding(),
                     )
                 }
             }
@@ -100,7 +100,7 @@ class DetailsActivity : ComponentActivity() {
 fun DetailsScreen(
     onErrorLoading: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailsViewModel = viewModel()
+    viewModel: DetailsViewModel = viewModel(),
 ) {
     // TODO Codelab: produceState step - Show loading screen while fetching city details
     val cityDetails = remember(viewModel) { viewModel.cityDetails }
@@ -114,7 +114,7 @@ fun DetailsScreen(
 @Composable
 fun DetailsContent(
     exploreModel: ExploreModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.Center) {
         Spacer(Modifier.height(32.dp))
@@ -122,13 +122,13 @@ fun DetailsContent(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             text = exploreModel.city.nameToDisplay,
             style = MaterialTheme.typography.h4,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             text = exploreModel.description,
             style = MaterialTheme.typography.h6,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
         Spacer(Modifier.height(16.dp))
         CityMapView(exploreModel.city.latitude, exploreModel.city.longitude)
@@ -149,7 +149,7 @@ private fun CityMapView(latitude: String, longitude: String) {
 private fun MapViewContainer(
     map: MapView,
     latitude: String,
-    longitude: String
+    longitude: String,
 ) {
     val cameraPosition = remember(latitude, longitude) {
         LatLng(latitude.toDouble(), longitude.toDouble())
@@ -183,7 +183,7 @@ private fun MapViewContainer(
 @Composable
 private fun ZoomControls(
     zoom: Float,
-    onZoomChanged: (Float) -> Unit
+    onZoomChanged: (Float) -> Unit,
 ) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
         ZoomButton("-", onClick = { onZoomChanged(zoom * 0.8f) })
@@ -197,9 +197,9 @@ private fun ZoomButton(text: String, onClick: () -> Unit) {
         modifier = Modifier.padding(8.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = MaterialTheme.colors.onPrimary,
-            contentColor = MaterialTheme.colors.primary
+            contentColor = MaterialTheme.colors.primary,
         ),
-        onClick = onClick
+        onClick = onClick,
     ) {
         Text(text = text, style = MaterialTheme.typography.h5)
     }

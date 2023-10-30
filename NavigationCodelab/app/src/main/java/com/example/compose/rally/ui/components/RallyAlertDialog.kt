@@ -35,7 +35,7 @@ import com.example.compose.rally.ui.theme.RallyDialogThemeOverlay
 fun RallyAlertDialog(
     onDismiss: () -> Unit,
     bodyText: String,
-    buttonText: String
+    buttonText: String,
 ) {
     RallyDialogThemeOverlay {
         AlertDialog(
@@ -45,18 +45,18 @@ fun RallyAlertDialog(
                 Column {
                     Divider(
                         Modifier.padding(horizontal = 12.dp),
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f),
                     )
                     TextButton(
                         onClick = onDismiss,
                         shape = RectangleShape,
                         contentPadding = PaddingValues(16.dp),
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Text(buttonText)
                     }
                 }
-            }
+            },
         )
     }
 }

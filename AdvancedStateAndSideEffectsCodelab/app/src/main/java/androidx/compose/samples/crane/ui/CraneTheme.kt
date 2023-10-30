@@ -36,14 +36,14 @@ val craneColors = lightColors(
     secondary = crane_red,
     surface = crane_purple_900,
     onSurface = crane_white,
-    primaryVariant = crane_purple_700
+    primaryVariant = crane_purple_700,
 )
 
 val BottomSheetShape = RoundedCornerShape(
     topStart = 20.dp,
     topEnd = 20.dp,
     bottomStart = 0.dp,
-    bottomEnd = 0.dp
+    bottomEnd = 0.dp,
 )
 
 @Composable

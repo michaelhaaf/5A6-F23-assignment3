@@ -60,8 +60,8 @@ class DetailsActivityTest {
         activityRule = ActivityScenarioRule<DetailsActivity>(
             createDetailsActivityIntent(
                 InstrumentationRegistry.getInstrumentation().targetContext,
-                testExploreModel
-            )
+                testExploreModel,
+            ),
         ),
         // Needed for now, discussed in https://issuetracker.google.com/issues/174472899
         activityProvider = { rule ->
@@ -71,7 +71,7 @@ class DetailsActivityTest {
                 throw IllegalStateException("Activity was not set in the ActivityScenarioRule!")
             }
             activity!!
-        }
+        },
     )
 
     @Before
@@ -91,7 +91,7 @@ class DetailsActivityTest {
 
         val expected = LatLng(
             testExploreModel.city.latitude.toDouble(),
-            testExploreModel.city.longitude.toDouble()
+            testExploreModel.city.longitude.toDouble(),
         )
         assert(expected.latitude == cameraPosition?.target?.latitude?.round(6))
         assert(expected.longitude == cameraPosition?.target?.longitude?.round(6))
