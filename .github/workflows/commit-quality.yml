@@ -26,7 +26,8 @@ jobs:
         distribution: 'temurin'
         java-version: 17
     - uses: gradle/gradle-build-action@v2
-    - run: |
+    - name: Decrypt debug keystore
+      run: |
         echo "${{ secrets.DEBUG_KEYSTORE }}" > ./debug.keystore.asc
         gpg -d --passphrase "${{ secrets.DEBUG_KEYSTORE_PASSPHRASE }}" --batch ./debug.keystore.asc > ./debug.keystore
     - run: chmod +x ./gradlew
