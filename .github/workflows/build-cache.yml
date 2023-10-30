@@ -1,0 +1,31 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  my_job:
+    name: Build and cache
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: { dir: ["NavigationCodelab", "AdvancedStateAndSideEffectsCodelab"] }
+    defaults:
+      run: 
+        working-directory: ${{ matrix.dir }}
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: 17
+    - uses: gradle/gradle-build-action@v2
+      with:
+        cache-read-only: false
+    - name: Decrypt debug keystore
+      run: |
+        echo "${{ secrets.DEBUG_KEYSTORE }}" > ./debug.keystore.asc
+        gpg -d --passphrase "${{ secrets.DEBUG_KEYSTORE_PASSPHRASE }}" --batch ./debug.keystore.asc > ./debug.keystore
+    - run: chmod +x ./gradlew
+    - run: ./gradlew build
