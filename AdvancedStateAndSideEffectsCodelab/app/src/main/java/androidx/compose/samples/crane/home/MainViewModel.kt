@@ -24,8 +24,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -52,13 +52,13 @@ class MainViewModel @Inject constructor(
     fun updatePeople(people: Int) {
         viewModelScope.launch {
             if (people > MAX_PEOPLE) {
-             _suggestedDestinations.value = emptyList()
+                _suggestedDestinations.value = emptyList()
             } else {
                 val newDestinations = withContext(defaultDispatcher) {
                     destinationsRepository.destinations
                         .shuffled(Random(people * (1..100).shuffled().first()))
                 }
-                 _suggestedDestinations.value = newDestinations
+                _suggestedDestinations.value = newDestinations
             }
         }
     }
@@ -69,7 +69,7 @@ class MainViewModel @Inject constructor(
                 destinationsRepository.destinations
                     .filter { it.city.nameToDisplay.contains(newDestination) }
             }
-             _suggestedDestinations.value = newDestinations
+            _suggestedDestinations.value = newDestinations
         }
     }
 }

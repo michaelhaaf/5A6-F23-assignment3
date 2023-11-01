@@ -40,7 +40,7 @@ fun CraneEditableUserInput(
         caption = caption,
         tintIcon = { !state.isHint },
         showCaption = { !state.isHint },
-        vectorImageId = vectorImageId
+        vectorImageId = vectorImageId,
     ) {
         BasicTextField(
             value = state.text,
@@ -50,7 +50,7 @@ fun CraneEditableUserInput(
             } else {
                 MaterialTheme.typography.body1.copy(color = LocalContentColor.current)
             },
-            cursorBrush = SolidColor(LocalContentColor.current)
+            cursorBrush = SolidColor(LocalContentColor.current),
         )
     }
 }
@@ -74,7 +74,7 @@ class EditableUserInputState(private val hint: String, initialText: String) {
                     hint = it[0],
                     initialText = it[1],
                 )
-            }
+            },
         )
     }
 }

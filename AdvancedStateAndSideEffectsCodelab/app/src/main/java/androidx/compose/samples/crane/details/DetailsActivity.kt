@@ -74,7 +74,7 @@ fun launchDetailsActivity(context: Context, item: ExploreModel) {
 data class DetailsUiState(
     val cityDetails: ExploreModel? = null,
     val isLoading: Boolean = false,
-    val throwError: Boolean = false
+    val throwError: Boolean = false,
 )
 
 @VisibleForTesting
@@ -128,7 +128,7 @@ fun DetailsScreen(
             Box(modifier.fillMaxSize()) {
                 CircularProgressIndicator(
                     color = MaterialTheme.colors.onSurface,
-                    modifier = Modifier.align(Alignment.Center)
+                    modifier = Modifier.align(Alignment.Center),
                 )
             }
         }

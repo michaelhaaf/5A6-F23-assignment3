@@ -59,8 +59,11 @@ class PeopleUserInputState {
 
     private fun updateAnimationState() {
         val newState =
-            if (people > MAX_PEOPLE) Invalid
-            else Valid
+            if (people > MAX_PEOPLE) {
+                Invalid
+            } else {
+                Valid
+            }
 
         if (animationState.currentState != newState) animationState.targetState = newState
     }
@@ -70,7 +73,7 @@ class PeopleUserInputState {
 fun PeopleUserInput(
     titleSuffix: String? = "",
     onPeopleChanged: (Int) -> Unit,
-    peopleState: PeopleUserInputState = remember { PeopleUserInputState() }
+    peopleState: PeopleUserInputState = remember { PeopleUserInputState() },
 ) {
     Column {
         val transitionState = remember { peopleState.animationState }
@@ -84,12 +87,12 @@ fun PeopleUserInput(
             onClick = {
                 peopleState.addPerson()
                 onPeopleChanged(peopleState.people)
-            }
+            },
         )
         if (transitionState.targetState == Invalid) {
             Text(
                 text = "Error: We don't support more than $MAX_PEOPLE people",
-                style = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.secondary)
+                style = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.secondary),
             )
         }
     }
@@ -116,7 +119,6 @@ fun ToDestinationUserInput(onToDestinationChanged: (String) -> Unit) {
                 currentOnDestinationChanged(editableUserInputState.text)
             }
     }
-
 }
 
 @Composable
@@ -124,20 +126,21 @@ fun DatesUserInput() {
     CraneUserInput(
         caption = "Select Dates",
         text = "",
-        vectorImageId = R.drawable.ic_calendar
+        vectorImageId = R.drawable.ic_calendar,
     )
 }
 
 @Composable
 private fun tintPeopleUserInput(
-    transitionState: MutableTransitionState<PeopleUserInputAnimationState>
+    transitionState: MutableTransitionState<PeopleUserInputAnimationState>,
 ): State<Color> {
     val validColor = MaterialTheme.colors.onSurface
     val invalidColor = MaterialTheme.colors.secondary
 
     val transition = updateTransition(transitionState, label = "")
     return transition.animateColor(
-        transitionSpec = { tween(durationMillis = 300) }, label = ""
+        transitionSpec = { tween(durationMillis = 300) },
+        label = "",
     ) {
         if (it == Valid) validColor else invalidColor
     }

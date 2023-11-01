@@ -57,7 +57,7 @@ private fun MainScreen(onExploreItemClicked: OnExploreItemClicked) {
     Surface(color = MaterialTheme.colors.primary) {
         var isLandingScreenOn by remember { mutableStateOf(true) }
         if (isLandingScreenOn) {
-            LandingScreen(onTimeout = {isLandingScreenOn = false})
+            LandingScreen(onTimeout = { isLandingScreenOn = false })
         } else {
             CraneHome(onExploreItemClicked = onExploreItemClicked)
         }

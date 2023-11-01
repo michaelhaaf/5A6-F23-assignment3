@@ -58,7 +58,7 @@ fun CraneHome(
         modifier = Modifier.statusBarsPadding(),
         drawerContent = {
             CraneDrawer()
-        }
+        },
     ) { padding ->
         val scope = rememberCoroutineScope()
         CraneHomeContent(
@@ -68,7 +68,7 @@ fun CraneHome(
                 scope.launch {
                     scaffoldState.drawerState.open()
                 }
-            }
+            },
         )
     }
 }
@@ -82,7 +82,6 @@ fun CraneHomeContent(
     viewModel: MainViewModel = viewModel(),
 ) {
     val suggestedDestinations by viewModel.suggestedDestinations.collectAsStateWithLifecycle()
-
 
     val onPeopleChanged: (Int) -> Unit = { viewModel.updatePeople(it) }
     var tabSelected by remember { mutableStateOf(CraneScreen.Fly) }
@@ -98,7 +97,7 @@ fun CraneHomeContent(
             SearchContent(
                 tabSelected,
                 viewModel,
-                onPeopleChanged
+                onPeopleChanged,
             )
         },
         frontLayerContent = {
@@ -107,25 +106,25 @@ fun CraneHomeContent(
                     ExploreSection(
                         title = "Explore Flights by Destination",
                         exploreList = suggestedDestinations,
-                        onItemClicked = onExploreItemClicked
+                        onItemClicked = onExploreItemClicked,
                     )
                 }
                 CraneScreen.Sleep -> {
                     ExploreSection(
                         title = "Explore Properties by Destination",
                         exploreList = viewModel.hotels,
-                        onItemClicked = onExploreItemClicked
+                        onItemClicked = onExploreItemClicked,
                     )
                 }
                 CraneScreen.Eat -> {
                     ExploreSection(
                         title = "Explore Restaurants by Destination",
                         exploreList = viewModel.restaurants,
-                        onItemClicked = onExploreItemClicked
+                        onItemClicked = onExploreItemClicked,
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -134,17 +133,17 @@ private fun HomeTabBar(
     openDrawer: () -> Unit,
     tabSelected: CraneScreen,
     onTabSelected: (CraneScreen) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     CraneTabBar(
         modifier = modifier,
-        onMenuClicked = openDrawer
+        onMenuClicked = openDrawer,
     ) { tabBarModifier ->
         CraneTabs(
             modifier = tabBarModifier,
             titles = CraneScreen.values().map { it.name },
             tabSelected = tabSelected,
-            onTabSelected = { newTab -> onTabSelected(CraneScreen.values()[newTab.ordinal]) }
+            onTabSelected = { newTab -> onTabSelected(CraneScreen.values()[newTab.ordinal]) },
         )
     }
 }
@@ -153,18 +152,18 @@ private fun HomeTabBar(
 private fun SearchContent(
     tabSelected: CraneScreen,
     viewModel: MainViewModel,
-    onPeopleChanged: (Int) -> Unit
+    onPeopleChanged: (Int) -> Unit,
 ) {
     when (tabSelected) {
         CraneScreen.Fly -> FlySearchContent(
             onPeopleChanged = onPeopleChanged,
-            onToDestinationChanged = { viewModel.toDestinationChanged(it) }
+            onToDestinationChanged = { viewModel.toDestinationChanged(it) },
         )
         CraneScreen.Sleep -> SleepSearchContent(
-            onPeopleChanged = onPeopleChanged
+            onPeopleChanged = onPeopleChanged,
         )
         CraneScreen.Eat -> EatSearchContent(
-            onPeopleChanged = onPeopleChanged
+            onPeopleChanged = onPeopleChanged,
         )
     }
 }
